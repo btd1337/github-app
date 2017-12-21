@@ -3,43 +3,20 @@ import './App.css';
 
 import React, { Component } from 'react';
 
-import Actions from './components/actions';
-import Repos from './components/repos';
-import Search from './components/search';
-import UserInfo from './components/user-info';
+import AppContent from './components/app-content';
 import logo from './logo.svg';
 
 class App extends Component {
+  constructor () {
+    super();
+    this.state = {
+
+    }
+  }
+
   render() {
     return (
-      <div className='box'>
-        <div className='col-md-4'></div>
-        <div className='app col-md-4'>
-          <Search />
-          <UserInfo />
-          <Actions />
-          <Repos 
-            className='repos' 
-            title='Repositórios'
-            repos={[
-              {
-                name: 'Nome do Repositório',
-                link: '#'
-              }
-            ]} 
-          />
-          <Repos 
-            className='starred' 
-            title='Favoritos'
-            repos={[
-              {
-                name: 'Nome do Repositório',
-                link: '#'
-              }
-            ]} 
-          />
-        </div>
-      </div>
+      <AppContent />
     );
   }
 }
