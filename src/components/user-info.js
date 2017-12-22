@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const UserInfo = ({ userInfo}) => (
     <div className='user-info'>
-        <img src={userInfo.photo} alt='user-pic'/>
+        <img src={userInfo.avatar_url} alt='user-pic'/>
         <h1>
             <a href={`https://github.com/${userInfo.login}`}>{userInfo.name} </a>
         </h1>
