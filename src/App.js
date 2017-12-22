@@ -11,7 +11,9 @@ class App extends Component {
     super();
     this.state = {
       userInfo: {
-        userName: 'Helder Bertoldo',
+        name: 'Helder Bertoldo',
+        photo: 'https://avatars0.githubusercontent.com/u/11943860?v=4',
+        login: 'btd1337',
         repos: 12,
         followers: 10,
         following: 10
