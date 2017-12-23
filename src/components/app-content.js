@@ -5,13 +5,13 @@ import Repos from './repos';
 import Search from './search';
 import UserInfo from './user-info';
 
-const AppContent = ({userInfo, repos, starred}) => (
+const AppContent = ({userInfo, repos, starred, handleSearch, getRepos }) => (
 	<div className='box'>
 	<div className='col-md-4'></div>
 	<div className='app col-md-4'>
-	  <Search />
+	  <Search handleSearch={handleSearch}/>
 	  {!!userInfo && <UserInfo userInfo={userInfo}/>}
-	  {!!userInfo && <Actions />}
+	  {!!userInfo && <Actions getRepos={getRepos}/>}
 	  {!!repos.length && <Repos 
 		className='repos' 
 		title='Repositórios'
@@ -27,7 +27,7 @@ const AppContent = ({userInfo, repos, starred}) => (
 )
 
 AppContent.propTypes = {
-	userInfo: PropTypes.object.isRequired,
+	userInfo: PropTypes.object,
 	repos: PropTypes.array.isRequired,
 	starred: PropTypes.array.isRequired
 }
