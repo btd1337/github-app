@@ -15,6 +15,7 @@ class App extends Component {
       starred: [],
       userInfo: null
     }
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   getGithubApiUrl (username, type) {
@@ -75,7 +76,7 @@ class App extends Component {
       <AppContent 
         getRepos={this.getRepos('repos')}
         getStarred={this.getRepos('starred')}
-        handleSearch={(e) => this.handleSearch(e)}
+        handleSearch={this.handleSearch}
         isFetching={this.state.isFetching}
         repos={this.state.repos}
         starred={this.state.starred}
