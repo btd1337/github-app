@@ -12,34 +12,22 @@ class App extends Component {
     this.state = {
       userInfo: null,
       repos: [],
-      starred: []
+      starred: [],
+      isFetching: false
     }
   }
 
-  handleSearch(e) {
-    const ENTER = 13;
-    const keyCode = e.which || e.keyCode
-    const value = e.target.value
-    if (keyCode === ENTER) {
-      ajax().get(`https://api.github.com/users/${value}`)
-        .then((result) => {
-          this.setState({
-            userInfo: {
-              name: result.name,
-              avatar_url: result.avatar_url,
-              login: result.login,
-              public_repos: result.public_repos,
-              followers: result.followers,
-              following: result.following
-            }
-          })
-        });
-    }
+  getGithubApiUrl (username, type) {
+    const internalType = (type ? `/${type}` : '');
+    const internalUserName = (username ? `${username}` : '');
+    const url = `https://api.github.com/users/${internalUserName}${internalType}`;
+    return url;
   }
 
   getRepos(type) {
     return (e) => {
-      fetch(`https://api.github.com/users/${this.state.userInfo.login}/${type}`)
+      const login = this.state.userInfo.login;
+      fetch(this.getGithubApiUrl(login,type))
         .then(result => result.json())
         .then(result => result.map(currentRepo => {
           let repo = {
@@ -51,6 +39,33 @@ class App extends Component {
             [type]: reposAux
           })
       }))
+    }
+  }
+
+  handleSearch(e) {
+    const ENTER = 13;
+    const input = e.target;
+    const keyCode = e.which || e.keyCode
+    const value = e.target.value
+    if (keyCode === ENTER) {
+      input.disabled = true;
+      
+      ajax().get(this.getGithubApiUrl(value))
+        .then((result) => {
+          this.setState({
+            userInfo: {
+              name: result.name,
+              avatar_url: result.avatar_url,
+              login: result.login,
+              public_repos: result.public_repos,
+              followers: result.followers,
+              following: result.following
+            },
+            repos: [],
+            starred: []
+          });
+        });
+        input.disabled = false;
     }
   }
 
