@@ -37,19 +37,21 @@ class App extends Component {
     }
   }
 
-  getRepos(e) {
-    fetch(`https://api.github.com/users/${this.state.userInfo.login}/repos`)
-      .then(result => result.json())
-      .then(result => result.map(currentRepo => {
-        let repo = {
-          name: currentRepo.name,
-          link: currentRepo.html_url,
-        }
-        let reposAux = [...this.state.repos,repo];
-        this.setState({
-          repos: reposAux
-        })
+  getRepos(type) {
+    return (e) => {
+      fetch(`https://api.github.com/users/${this.state.userInfo.login}/${type}`)
+        .then(result => result.json())
+        .then(result => result.map(currentRepo => {
+          let repo = {
+            name: currentRepo.name,
+            link: currentRepo.html_url,
+          }
+          let reposAux = (type === 'repos' ? [...this.state.repos,repo] :       [...this.state.starred,repo]);
+          this.setState({
+            [type]: reposAux
+          })
       }))
+    }
   }
 
   render() {
@@ -59,7 +61,8 @@ class App extends Component {
         repos={this.state.repos}
         starred={this.state.starred}
         handleSearch={(e) => this.handleSearch(e)}
-        getRepos={(e) => this.getRepos(e)}
+        getRepos={this.getRepos('repos')}
+        getStarred={this.getRepos('starred')}
       />
     );
   }

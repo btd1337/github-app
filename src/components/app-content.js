@@ -5,13 +5,13 @@ import Repos from './repos';
 import Search from './search';
 import UserInfo from './user-info';
 
-const AppContent = ({userInfo, repos, starred, handleSearch, getRepos }) => (
+const AppContent = ({userInfo, repos, starred, handleSearch, getRepos, getStarred }) => (
 	<div className='box'>
 	<div className='col-md-4'></div>
 	<div className='app col-md-4'>
 	  <Search handleSearch={handleSearch}/>
 	  {!!userInfo && <UserInfo userInfo={userInfo}/>}
-	  {!!userInfo && <Actions getRepos={getRepos}/>}
+	  {!!userInfo && <Actions getRepos={getRepos} getStarred={getStarred} />}
 	  {!!repos.length && <Repos 
 		className='repos' 
 		title='Repositórios'
