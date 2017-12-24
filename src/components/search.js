@@ -13,7 +13,8 @@ const Search = ({ handleSearch, isFetching }) => (
 )
 
 Search.propTypes = {
-    handleSearch: PropTypes.func.isRequired
+    handleSearch: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired
 }
 
 export default Search;
