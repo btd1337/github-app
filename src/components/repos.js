@@ -20,8 +20,8 @@ Repos.defaultProps = {
 
 Repos.propTypes = {
     className: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    repos: PropTypes.array
+    repos: PropTypes.array,
+    title: PropTypes.string.isRequired
 }
 
 export default Repos;

@@ -10,16 +10,16 @@ class App extends Component {
   constructor () {
     super();
     this.state = {
-      userInfo: null,
+      isFetching: false,
       repos: [],
       starred: [],
-      isFetching: false
+      userInfo: null
     }
   }
 
   getGithubApiUrl (username, type) {
-    const internalType = (type ? `/${type}` : '');
     const internalUserName = (username ? `${username}` : '');
+    const internalType = (type ? `/${type}` : '');
     const url = `https://api.github.com/users/${internalUserName}${internalType}`;
     return url;
   }
@@ -44,40 +44,42 @@ class App extends Component {
 
   handleSearch(e) {
     const ENTER = 13;
-    const input = e.target;
     const keyCode = e.which || e.keyCode
     const value = e.target.value
     if (keyCode === ENTER) {
-      input.disabled = true;
-      
+      this.setState({
+        isFetching: true
+      })
       ajax().get(this.getGithubApiUrl(value))
         .then((result) => {
           this.setState({
             userInfo: {
-              name: result.name,
               avatar_url: result.avatar_url,
-              login: result.login,
-              public_repos: result.public_repos,
               followers: result.followers,
-              following: result.following
+              following: result.following,
+              login: result.login,
+              name: result.name,
+              public_repos: result.public_repos,
             },
+            isFetching: false,
             repos: [],
             starred: []
           });
+          console.log(this.state.isFetching);
         });
-        input.disabled = false;
     }
   }
 
   render() {
     return (
       <AppContent 
-        userInfo={this.state.userInfo}
-        repos={this.state.repos}
-        starred={this.state.starred}
-        handleSearch={(e) => this.handleSearch(e)}
         getRepos={this.getRepos('repos')}
         getStarred={this.getRepos('starred')}
+        handleSearch={(e) => this.handleSearch(e)}
+        isFetching={this.state.isFetching}
+        repos={this.state.repos}
+        starred={this.state.starred}
+        userInfo={this.state.userInfo}
       />
     );
   }

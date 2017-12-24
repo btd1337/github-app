@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Search = ({ handleSearch }) => (
+const Search = ({ handleSearch, isFetching }) => (
     <div className='search'>
         <input 
-            type='search' 
-            placeholder='Digite o nome do usuário'
+            disabled={isFetching}
             onKeyUp={handleSearch}
+            placeholder='Digite o nome do usuário'
+            type='search' 
         />
     </div>
 )
