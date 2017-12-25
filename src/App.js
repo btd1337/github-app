@@ -10,12 +10,28 @@ class App extends Component {
   constructor () {
     super();
     this.state = {
+      isDisplayingRepos: false,
+      isDisplayingStarreds: false,
       isFetching: false,
       repos: [],
       starred: [],
       userInfo: null
     }
     this.handleSearch = this.handleSearch.bind(this)
+  }
+
+  setDisplaying(type) {
+    if(type === 'repos') {
+      this.setState ({
+        isDisplayingRepos: true,
+        isDisplayingStarreds: false
+      })
+    } else {
+      this.setState ({
+        isDisplayingRepos: false,
+        isDisplayingStarreds: true
+      })
+    }
   }
 
   getGithubApiUrl (username, type) {
@@ -31,6 +47,7 @@ class App extends Component {
       fetch(this.getGithubApiUrl(login,type))
         .then(result => result.json())
         .then(result => result.map(currentRepo => {
+          this.setDisplaying(type);
           let repo = {
             name: currentRepo.name,
             link: currentRepo.html_url,
@@ -77,10 +94,7 @@ class App extends Component {
         getRepos={this.getRepos('repos')}
         getStarred={this.getRepos('starred')}
         handleSearch={this.handleSearch}
-        isFetching={this.state.isFetching}
-        repos={this.state.repos}
-        starred={this.state.starred}
-        userInfo={this.state.userInfo}
+        {...this.state}
       />
     );
   }

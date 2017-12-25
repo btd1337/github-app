@@ -5,7 +5,7 @@ import Repos from './repos';
 import Search from './search';
 import UserInfo from './user-info';
 
-const AppContent = ({getRepos, getStarred, handleSearch, isFetching, repos, starred, userInfo}) => (
+const AppContent = ({getRepos, getStarred, handleSearch, isFetching, isDisplayingRepos, isDisplayingStarreds, repos, starred, userInfo}) => (
 	<div className='box'>
 	<div className='col-md-4'></div>
 	<div className='app col-md-4'>
@@ -13,12 +13,12 @@ const AppContent = ({getRepos, getStarred, handleSearch, isFetching, repos, star
 		{isFetching && <div>Carregando...</div>}
 	  {!!userInfo && <UserInfo userInfo={userInfo}/>}
 	  {!!userInfo && <Actions getRepos={getRepos} getStarred={getStarred} />}
-	  {!!repos.length && <Repos 
+	  {!isDisplayingStarreds && !!repos.length && <Repos 
 		className='repos' 
 		title='Repositórios'
 		repos={repos} 
 	  />}
-	  {!!starred.length && <Repos 
+	  {!isDisplayingRepos && !!starred.length && <Repos 
 		className='starred' 
 		title='Favoritos'
 		repos={starred} 
