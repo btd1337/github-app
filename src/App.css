@@ -1,35 +1,31 @@
-.app {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.app-logo {
-  animation: app-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.app-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.app-title {
-  font-size: 1.5em;
-}
-
-.app-intro {
-  font-size: large;
-}
-
 @keyframes app-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.search {
-  margin-bottom: 5%;
+.app {
+  background: #36D1DC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  border-radius: 5px;
+}
+
+.actions {
+  padding: 5% 35%;
+}
+
+.box {
+  background-color: red;
+  width: 100%;
+}
+
+input {
+  border-radius: 4px;
+  font-size: 1.3em;
+  height: 35px;
+  text-align: center;
+  width: 100%;
 }
 
 li {
@@ -39,10 +35,53 @@ li {
 
 li.repos {
   background-image: url('./assets/img/github_icon.svg');
-	background-position: left center;
 	background-repeat: no-repeat;
-	background-size: 0.9em;
+  background-size: 0.9em;
 	list-style: none;
   padding-left: 1.7em;
   text-align: left;
 }
+
+.repos-info {
+  font-size: 1.3em;
+  padding-left: 25%;
+}
+    
+.search {
+  margin: 5% 0%;
+  width: 100%;
+}
+
+.username a{
+  color: #302b63;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.user-avatar img {
+  border-radius: 5px;
+  height: 300px;
+  width: 300px;
+}
+
+.user-avatar {
+  float: left; 
+  width: 50%;
+}
+
+.user-data {
+  float: right;
+  padding: 5% 5%;
+  text-align: center;
+  width: 50%;
+}
+
+.user-data li {
+  padding-left: 5%;
+  text-align: left;
+}
+
+.user-info {
+  padding: 0% 15%;
+}
+

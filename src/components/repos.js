@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Repos = ({ className, title, repos }) => (
-    <div className={className}>
+    <div className='{className} col-lg-offset-4'>
         <h2>{title}</h2>
         <ul>
             {repos.map((repo, index) => (

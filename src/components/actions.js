@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const Actions = ({ getRepos, getStarred }) => (
     <div className='actions'>
-        <button onClick={getRepos}>Ver Repositórios</button>
-        <button onClick={getStarred}>Ver Favoritos</button>
+        <button className='btn btn-primary' onClick={getRepos}>Ver Repositórios</button>
+        <button className='btn btn-primary' onClick={getStarred}>Ver Favoritos</button>
     </div>
 )
 
