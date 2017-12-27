@@ -71,13 +71,14 @@ class App extends Component {
       })
       ajax().get(this.getGithubApiUrl(value))
         .then((result) => {
+          let username = result.name === null ? result.login : result.name;
           this.setState({
             userInfo: {
               avatar_url: result.avatar_url,
               followers: result.followers,
               following: result.following,
               login: result.login,
-              name: result.name,
+              name: username,
               public_repos: result.public_repos,
             },
             isFetching: false,
