@@ -44,21 +44,22 @@ class App extends Component {
   getRepos(type) {
     return (e) => {
       const login = this.state.userInfo.login;
-      fetch(this.getGithubApiUrl(login,type))
-        .then(result => result.json())
-        .then(result => result.map(currentRepo => {
+      ajax().get(this.getGithubApiUrl(login, type))
+        .then(result => {
           this.setDisplaying(type);
-          let repo = {
-            name: currentRepo.name,
-            link: currentRepo.html_url,
-          }
-          let reposAux = (type === 'repos' ? [...this.state.repos,repo] :       [...this.state.starred,repo]);
           this.setState({
-            [type]: reposAux
+            [type]: result.map((repo) => {
+              return {
+                name: repo.name,
+                link: repo.html_url
+              }
+            })
           })
-      }))
+        })
     }
   }
+        
+
 
   handleSearch(e) {
     const ENTER = 13;
