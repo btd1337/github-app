@@ -1,7 +1,7 @@
-# github-app
+# Github App
 It's a simple Github API made in React
 
-# Simple Screenshot
+## Simple Screenshot
 
 ![Screenshot](https://raw.githubusercontent.com/btd1337/github-app/master/screenshot.png)
 
